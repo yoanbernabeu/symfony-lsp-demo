@@ -1,7 +1,9 @@
-<h1>{{ 'checkout.title'|trans }}</h1>
+<h1>{{ 'checkout.title'|trans({'%shop%': 'Demo Shop'}) }}</h1>
 
 {{ form(form) }}
 
 {% include 'summary.html.twig' %}
 
-<a href="{{ path('checkout_confirm') }}">{{ 'checkout.title'|trans }}</a>
+<a href="{{ path('checkout_confirm', { reference: 'ORD-1001' }) }}">
+    {{ 'checkout.title'|trans({'%shop%': 'Demo Shop'}) }}
+</a>

@@ -17,8 +17,8 @@ class CheckoutController extends AbstractController
         ]);
     }
 
-    #[Route('/checkout/confirm', name: 'checkout_confirm')]
-    public function confirm(): Response
+    #[Route('/checkout/{reference}/confirm', name: 'checkout_confirm')]
+    public function confirm(string $reference): Response
     {
         return $this->redirectToRoute('checkout_index');
     }
