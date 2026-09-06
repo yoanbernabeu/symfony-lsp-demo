@@ -1,0 +1,7 @@
+<h1>{{ 'checkout.title'|trans }}</h1>
+
+{{ form(form) }}
+
+{% include 'summary.html.twig' %}
+
+<a href="{{ path('checkout_confirm') }}">{{ 'checkout.title'|trans }}</a>

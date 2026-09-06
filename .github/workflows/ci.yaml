@@ -1,0 +1,53 @@
+name: CI
+
+on:
+    push:
+    pull_request:
+
+env:
+    SYMFONY_LSP_VERSION: v0.19.0
+
+jobs:
+    phpstan:
+        name: PHPStan (niveau max)
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v5
+
+            - uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.4'
+                  coverage: none
+
+            - run: composer install --no-progress --no-interaction
+
+            - name: Compile le conteneur (requis par phpstan-symfony)
+              run: php bin/console cache:warmup --env=dev
+
+            - run: vendor/bin/phpstan analyse --no-progress
+
+    symfony-lsp:
+        name: Symfony LSP
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v5
+
+            - uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.4'
+                  coverage: none
+
+            - run: composer install --no-progress --no-interaction
+
+            - name: Installe symfony-lsp
+              run: |
+                  ARCHIVE="symfony-lsp-${SYMFONY_LSP_VERSION}-linux-x64.tar.gz"
+                  BASE="https://github.com/symfony/language-tools/releases/download/${SYMFONY_LSP_VERSION}"
+                  curl -sSfL -o "$ARCHIVE" "$BASE/$ARCHIVE"
+                  curl -sSfL -o SHA256SUMS "$BASE/SHA256SUMS"
+                  grep " $ARCHIVE\$" SHA256SUMS | sha256sum -c -
+                  tar xzf "$ARCHIVE"
+                  dirname "$(find . -maxdepth 2 -type f -name symfony-lsp -perm -u+x | head -1)" >> "$GITHUB_PATH"
+
+            - name: Diagnostics Symfony
+              run: symfony-lsp check --format=github

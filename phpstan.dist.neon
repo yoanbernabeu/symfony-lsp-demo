@@ -1,0 +1,11 @@
+parameters:
+    level: max
+    paths:
+        - src
+    symfony:
+        containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml
+    ignoreErrors:
+        # Méthode fournie par le skeleton Symfony, hors du périmètre de cette démo
+        -
+            identifier: method.unused
+            path: src/Kernel.php
