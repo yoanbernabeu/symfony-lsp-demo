@@ -54,9 +54,7 @@ translations/messages.en.yaml           le catalogue
 ## Reproduire en local
 
 Prérequis : PHP 8.4+, Composer, et Symfony CLI 5.20 ou supérieur, qui expose la
-commande `symfony lsp:check`. Le binaire autonome `symfony-lsp`
-([releases](https://github.com/symfony/language-tools/releases)) fonctionne aussi,
-sa commande équivalente étant `symfony-lsp check`.
+commande `symfony lsp:check`.
 
 ```bash
 git clone https://github.com/yoanbernabeu/symfony-lsp-demo.git
