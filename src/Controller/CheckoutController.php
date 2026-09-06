@@ -12,7 +12,7 @@ class CheckoutController extends AbstractController
     #[Route('/checkout', name: 'checkout_index')]
     public function index(): Response
     {
-        return $this->render('checkout.html.twig', [
+        return $this->render('chekout.html.twig', [
             'form' => $this->createForm(CheckoutType::class)->createView(),
         ]);
     }
@@ -20,6 +20,6 @@ class CheckoutController extends AbstractController
     #[Route('/checkout/{reference}/confirm', name: 'checkout_confirm')]
     public function confirm(string $reference): Response
     {
-        return $this->redirectToRoute('checkout_index');
+        return $this->redirectToRoute('checkout_indx');
     }
 }

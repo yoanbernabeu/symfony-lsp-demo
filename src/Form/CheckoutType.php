@@ -15,7 +15,7 @@ class CheckoutType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('customerName', TextType::class, ['required' => true])
-            ->add('email', EmailType::class, ['required' => true]);
+            ->add('customerName', TextType::class, ['requiered' => true])
+            ->add('email', EmailType::class, ['requiered' => true]);
     }
 }
