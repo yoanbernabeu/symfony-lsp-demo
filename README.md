@@ -1,4 +1,4 @@
-# Symfony LSP — bac à sable
+# Symfony LSP : bac à sable
 
 Application Symfony 8.1 servant de terrain d'expérimentation à
 [Symfony Language Tools](https://github.com/symfony/language-tools), le serveur
@@ -23,8 +23,8 @@ donc une catégorie d'erreurs qu'aucun analyseur statique ne peut voir.
 
 | Branche  | Contenu | PHPStan (niveau max) | `symfony lsp:check` |
 |----------|---------|----------------------|---------------------|
-| `main`   | Application correcte | ✅ vert | ✅ vert — 0 diagnostic |
-| `broken` | 6 familles d'erreurs Symfony | ✅ **vert** | ❌ rouge — 8 diagnostics |
+| `main`   | Application correcte | ✅ vert | ✅ vert, 0 diagnostic |
+| `broken` | 6 familles d'erreurs Symfony | ✅ **vert** | ❌ rouge, 8 diagnostics |
 
 La ligne qui compte est la seconde : **PHPStan reste vert alors que
 l'application est cassée.** Il tourne pourtant au niveau maximum, avec
@@ -37,7 +37,7 @@ Tout le reste est le squelette généré par `symfony new --webapp`.
 ```
 src/Controller/CheckoutController.php   2 routes, 1 render, 1 redirectToRoute
 src/Form/CheckoutType.php               2 champs de formulaire
-templates/checkout.html.twig            path(), trans, include — 9 lignes, 4 erreurs
+templates/checkout.html.twig            path(), trans, include (9 lignes, 4 erreurs)
 templates/summary.html.twig             la cible de l'include
 translations/messages.en.yaml           le catalogue
 ```
@@ -70,7 +70,7 @@ Sur `main`, les deux outils sont verts :
 
 ```bash
 vendor/bin/phpstan analyse    # [OK] No errors
-symfony lsp:check             # 0 diagnostic — code de sortie 0
+symfony lsp:check             # 0 diagnostic, code de sortie 0
 ```
 
 Sur `broken`, seul le LSP réagit :
@@ -120,4 +120,4 @@ Symfony LSP échoue, avec les diagnostics annotés directement dans les fichiers
 
 ## Licence
 
-MIT — voir [LICENSE](LICENSE).
+MIT, voir [LICENSE](LICENSE).
