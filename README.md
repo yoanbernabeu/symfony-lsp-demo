@@ -101,12 +101,6 @@ Le workflow [`.github/workflows/ci.yaml`](.github/workflows/ci.yaml) lance les
 deux outils sur chaque branche. Sur `broken`, le job PHPStan passe et le job
 Symfony LSP échoue, avec les diagnostics annotés directement dans les fichiers.
 
-## Agents de code
-
-Le dépôt contient un [`AGENTS.md`](AGENTS.md) — le fichier d'instructions généré
-par Symfony 8.1, complété d'une consigne demandant de lancer `symfony lsp:check`
-avant de considérer une tâche terminée.
-
 ## Précisions
 
 - Les diagnostics de traduction sont désactivés par défaut ; ils sont activés

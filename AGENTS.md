@@ -106,19 +106,3 @@ things up in the project instead of relying on memory:
 - Read the installed source and docblocks under `vendor/`.
 - Docs: https://symfony.com/doc/current/ (switch to the version matching
   `composer.json` if it differs).
-
-## Diagnostics Symfony
-
-PHPStan ne connaît ni les noms de routes, ni les chemins de templates, ni les
-clés de traduction, ni les options de formulaire : ces informations n'existent
-que dans le conteneur compilé. `symfony lsp:check` les vérifie.
-
-Avant de considérer une tâche terminée, lance :
-
-```
-symfony lsp:check
-```
-
-Le code de sortie `10` signale des diagnostics bloquants : corrige-les avant de
-rendre la main. Les codes `11` (configuration invalide) et `12` (analyse
-incomplète) signalent un problème d'outillage, pas une erreur dans le code.
