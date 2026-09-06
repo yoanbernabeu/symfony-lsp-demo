@@ -24,7 +24,7 @@ donc une catégorie d'erreurs qu'aucun analyseur statique ne peut voir.
 | Branche  | Contenu | PHPStan (niveau max) | `symfony lsp:check` |
 |----------|---------|----------------------|---------------------|
 | `main`   | Application correcte | ✅ vert | ✅ vert — 0 diagnostic |
-| `broken` | 4 familles d'erreurs Symfony | ✅ **vert** | ❌ rouge — 8 diagnostics |
+| `broken` | 6 familles d'erreurs Symfony | ✅ **vert** | ❌ rouge — 8 diagnostics |
 
 La ligne qui compte est la seconde : **PHPStan reste vert alors que
 l'application est cassée.** Il tourne pourtant au niveau maximum, avec
@@ -37,7 +37,7 @@ Tout le reste est le squelette généré par `symfony new --webapp`.
 ```
 src/Controller/CheckoutController.php   2 routes, 1 render, 1 redirectToRoute
 src/Form/CheckoutType.php               2 champs de formulaire
-templates/checkout.html.twig            path(), trans, include — 7 lignes
+templates/checkout.html.twig            path(), trans, include — 9 lignes, 4 erreurs
 templates/summary.html.twig             la cible de l'include
 translations/messages.en.yaml           le catalogue
 ```
@@ -109,6 +109,11 @@ Symfony LSP échoue, avec les diagnostics annotés directement dans les fichiers
 - Les options de formulaire ne sont analysées que dans une classe étendant
   `AbstractType`. Un `createFormBuilder()` construit à la volée dans un
   contrôleur n'est pas couvert.
+- Un diagnostic volontaire peut être neutralisé sur place, dans un commentaire
+  natif PHP, Twig, YAML ou XML :
+  `{# @symfony-lsp-ignore template.not_found (raison) #}`.
+- `--source-only` ne détecte **aucune** des erreurs de ce dépôt : toutes
+  dépendent du conteneur compilé, donc de l'exécution de l'application.
 - L'analyse par défaut **exécute le code de l'application** pour lire ses
   métadonnées. `--source-only` s'en abstient, au prix des diagnostics qui
   dépendent du conteneur compilé.
